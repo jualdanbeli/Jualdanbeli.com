@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sertifikat Kepemilikan Merek – J&B jualdanbeli</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #f5f5f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    position: relative;
+    padding: 18mm 16mm;
+    border: 10px solid #111111;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .border-inner {
+    position: absolute;
+    inset: 16px;
+    border: 2.5px solid #FF3C00;
+    pointer-events: none;
+  }
+
+  .corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: #FF3C00;
+    border-style: solid;
+  }
+  .corner-tl { top: 24px; left: 24px; border-width: 3px 0 0 3px; }
+  .corner-tr { top: 24px; right: 24px; border-width: 3px 3px 0 0; }
+  .corner-bl { bottom: 24px; left: 24px; border-width: 0 0 3px 3px; }
+  .corner-br { bottom: 24px; right: 24px; border-width: 0 3px 3px 0; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 8mm; }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 6mm;
+  }
+
+  .logo-svg { flex-shrink: 0; }
+
+  .logo-text-area { text-align: left; }
+  .logo-brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: #111;
+    line-height: 1;
+  }
+  .logo-brand .amp { color: #FF3C00; }
+  .logo-brand sup { font-size: 12px; color: #FF3C00; vertical-align: super; }
+  .logo-tagline {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FF3C00;
+    margin-top: 3px;
+  }
+
+  .cert-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #111;
+    margin: 5mm 0 3mm;
+  }
+
+  .divider {
+    width: 90mm;
+    height: 3px;
+    margin: 0 auto 3mm;
+    background: linear-gradient(90deg, transparent, #FF3C00, #111, #FF3C00, transparent);
+  }
+
+  .cert-subtitle {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #666;
+    text-transform: uppercase;
+  }
+
+  /* Stars */
+  .stars {
+    text-align: center;
+    color: #FF3C00;
+    font-size: 14px;
+    margin: 3mm 0;
+    letter-spacing: 4px;
+  }
+
+  /* Body */
+  .body-text {
+    font-size: 12px;
+    line-height: 1.9;
+    color: #333;
+    text-align: center;
+    margin: 5mm 0 3mm;
+  }
+
+  .owner-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 38px;
+    font-weight: 700;
+    font-style: italic;
+    color: #111;
+    text-align: center;
+    margin: 6mm 0;
+    padding-bottom: 3mm;
+    border-bottom: 2px solid #111;
+    letter-spacing: 1px;
+  }
+
+  .owner-title {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FF3C00;
+    margin-bottom: 6mm;
+  }
+
+  /* Brand box */
+  .brand-box {
+    background: #111;
+    border-radius: 10px;
+    padding: 5mm 8mm;
+    text-align: center;
+    margin: 5mm 0;
+  }
+
+  .brand-jb {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: #FF3C00;
+    line-height: 1;
+  }
+
+  .brand-full {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2mm;
+    letter-spacing: 2px;
+  }
+
+  .brand-sub {
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #aaa;
+    text-transform: uppercase;
+    margin-top: 2mm;
+  }
+
+  /* Info grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3mm;
+    margin: 5mm 0;
+  }
+
+  .info-cell {
+    background: #f9f9f7;
+    border: 1px solid #e0e0d8;
+    border-radius: 5px;
+    padding: 3mm;
+  }
+
+  .info-label {
+    font-size: 8px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .info-value {
+    font-size: 11px;
+    font-weight: 700;
+    color: #111;
+    margin-top: 1.5mm;
+    line-height: 1.3;
+  }
+
+  /* Rights */
+  .rights-box {
+    border: 1.5px solid #FF3C00;
+    background: #fff8f5;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin: 5mm 0;
+  }
+
+  .rights-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #FF3C00;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 2.5mm;
+  }
+
+  .rights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5mm 4mm;
+  }
+
+  .rights-item {
+    font-size: 10px;
+    color: #333;
+    display: flex;
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .rights-item::before {
+    content: "✓";
+    color: #FF3C00;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  /* Legal basis */
+  .legal-box {
+    background: #f0f4ff;
+    border: 1px solid #c5d3f5;
+    border-radius: 5px;
+    padding: 3mm 4mm;
+    margin: 4mm 0;
+    font-size: 9.5px;
+    color: #2a4080;
+    line-height: 1.6;
+  }
+
+  .legal-box strong { font-weight: 700; }
+
+  /* Footer signatures */
+  .signatures {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 8mm;
+  }
+
+  .sig-block { text-align: center; }
+
+  .sig-line {
+    width: 45mm;
+    height: 1px;
+    background: #111;
+    margin: 10mm auto 2mm;
+  }
+
+  .sig-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .sig-role {
+    font-size: 9px;
+    color: #777;
+  }
+
+  /* Seal */
+  .seal {
+    width: 28mm;
+    height: 28mm;
+    border: 3px solid #FF3C00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: radial-gradient(circle, #fff8f5, #fff);
+  }
+
+  .seal-text {
+    font-size: 7px;
+    font-weight: 900;
+    text-align: center;
+    color: #FF3C00;
+    text-transform: uppercase;
+    line-height: 1.5;
+    letter-spacing: 1px;
+  }
+
+  /* Bottom notice */
+  .bottom-notice {
+    margin-top: 8mm;
+    padding-top: 4mm;
+    border-top: 1px solid #e0e0d8;
+    font-size: 8.5px;
+    color: #888;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  .bottom-notice strong { color: #555; }
+
+  /* Print */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; margin: 0; }
+    .no-print { display: none !important; }
+  }
+
+  /* Print button */
+  .print-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 32px;
+    background: #FF3C00;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .print-btn:hover { background: #dd3300; }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">🖨️ Cetak / Simpan sebagai PDF</button>
+
+<div class="page">
+  <div class="border-inner"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-area">
+      <!-- J&B Logo SVG -->
+      <svg class="logo-svg" width="60" height="60" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="180" height="180" rx="28" fill="#111111"/>
+        <rect x="0" y="0" width="180" height="6" rx="3" fill="#FF3C00"/>
+        <rect x="0" y="148" width="180" height="32" fill="#FF3C00"/>
+        <rect x="0" y="172" width="180" height="8" rx="4" fill="#FF3C00"/>
+        <text x="22" y="144" font-family="Georgia, serif" font-size="108" font-weight="900" fill="white">J</text>
+        <text x="72" y="134" font-family="Georgia, serif" font-size="72" font-weight="900" fill="#FF3C00">&amp;</text>
+        <text x="114" y="144" font-family="Georgia, serif" font-size="108" font-weight="900" fill="white">B</text>
+        <text x="90" y="166" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle" letter-spacing="3">JUALDANBELI</text>
+      </svg>
+      <div class="logo-text-area">
+        <div class="logo-brand">J<span class="amp">&amp;</span>B<sup>™</sup></div>
+        <div class="logo-tagline">jualdanbeli™</div>
+      </div>
+    </div>
+
+    <div class="cert-title">Sertifikat Kepemilikan Merek</div>
+    <div class="divider"></div>
+    <div class="cert-subtitle">Certificate of Brand Ownership &amp; Intellectual Property Declaration</div>
+    <div class="stars">★ ★ ★ ★ ★</div>
+  </div>
+
+  <!-- Body -->
+  <div class="body-text">
+    Sertifikat ini dengan resmi menyatakan bahwa merek dagang <strong>J&amp;B™</strong> dan <strong>jualdanbeli™</strong>
+    beserta seluruh aset visual, logo, dan identitas merek yang terdapat dalam platform marketplace ini
+    adalah sepenuhnya milik eksklusif dari:
+  </div>
+
+  <div class="owner-name">Hari Muhammad Hamzah</div>
+  <div class="owner-title">Pemilik &amp; Pemegang Hak Eksklusif Merek Dagang</div>
+
+  <!-- Brand Box -->
+  <div class="brand-box">
+    <div class="brand-jb">J&amp;B™</div>
+    <div class="brand-full">jualdanbeli™</div>
+    <div class="brand-sub">Merek Dagang Resmi · Registered Trademark · Indonesia</div>
+  </div>
+
+  <!-- Info Grid -->
+  <div class="info-grid">
+    <div class="info-cell">
+      <div class="info-label">Nama Pemilik</div>
+      <div class="info-value">Hari Muhammad Hamzah</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Merek Terdaftar</div>
+      <div class="info-value">J&amp;B™ · jualdanbeli™</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">NIB</div>
+      <div class="info-value">2403240017145</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Tanggal Deklarasi</div>
+      <div class="info-value" id="tgl"></div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Negara</div>
+      <div class="info-value">Republik Indonesia</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Kelas Merek (DJKI)</div>
+      <div class="info-value">Kelas 35 · 38 · 42</div>
+    </div>
+  </div>
+
+  <!-- Rights -->
+  <div class="rights-box">
+    <div class="rights-title">⚖ Hak Eksklusif Pemilik Merek</div>
+    <div class="rights-grid">
+      <div class="rights-item">Hak tunggal penggunaan logo J&amp;B dan nama jualdanbeli di seluruh Indonesia</div>
+      <div class="rights-item">Hak eksklusif atas dashboard operator dan pengelolaan penuh platform</div>
+      <div class="rights-item">Hak menetapkan tarif layanan, komisi, dan kebijakan platform</div>
+      <div class="rights-item">Hak penuh atas seluruh kode sumber dan aset digital platform</div>
+      <div class="rights-item">Hak memberikan lisensi kepada pihak ketiga atas izin tertulis pemilik</div>
+      <div class="rights-item">Hak mengajukan tuntutan hukum atas pelanggaran merek dan HKI</div>
+    </div>
+  </div>
+
+  <!-- Legal -->
+  <div class="legal-box">
+    <strong>Dasar Hukum:</strong>
+    UU No. 20 Tahun 2016 tentang Merek dan Indikasi Geografis &nbsp;·&nbsp;
+    UU No. 28 Tahun 2014 tentang Hak Cipta &nbsp;·&nbsp;
+    UU No. 11 Tahun 2008 tentang ITE &nbsp;·&nbsp;
+    PP No. 22 Tahun 2018 &nbsp;·&nbsp;
+    Konvensi Paris (Paris Convention for the Protection of Industrial Property)
+  </div>
+
+  <!-- Signatures -->
+  <div class="signatures">
+    <div class="sig-block">
+      <div class="sig-line"></div>
+      <div class="sig-name">Hari Muhammad Hamzah</div>
+      <div class="sig-role">Pemilik &amp; Pemegang Merek</div>
+    </div>
+
+    <div class="seal">
+      <div class="seal-text">J&amp;B<br/>———<br/>RESMI<br/>™<br/>2024</div>
+    </div>
+
+    <div class="sig-block">
+      <div class="sig-line"></div>
+      <div class="sig-name">Platform jualdanbeli</div>
+      <div class="sig-role">Administrator Sistem</div>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="bottom-notice">
+    <strong>© 2024–<span id="yr"></span> J&amp;B™ jualdanbeli™ — Hari Muhammad Hamzah. Semua Hak Dilindungi.</strong><br/>
+    Dokumen ini merupakan deklarasi kepemilikan merek resmi. Untuk perlindungan hukum penuh (tanda <strong>®</strong>),
+    daftarkan merek ke DJKI di <strong>merek.dgip.go.id</strong> · Kementerian Hukum dan HAM Republik Indonesia.<br/>
+    Dilarang keras meniru, menduplikasi, atau menggunakan merek J&amp;B™ / jualdanbeli™ tanpa izin tertulis dari pemilik.
+    Pelanggaran dapat diproses secara perdata maupun pidana sesuai peraturan perundang-undangan yang berlaku.
+  </div>
+</div>
+
+<button class="print-btn no-print" onclick="window.print()">🖨️ Cetak / Simpan sebagai PDF</button>
+
+<script>
+  const now = new Date();
+  document.getElementById('tgl').textContent = now.toLocaleDateString('id-ID', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+  document.getElementById('yr').textContent = now.getFullYear();
+</script>
+</body>
+</html>

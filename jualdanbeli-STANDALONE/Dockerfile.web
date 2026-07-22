@@ -1,0 +1,29 @@
+FROM node:24-alpine AS base
+RUN corepack enable pnpm
+
+FROM base AS deps
+WORKDIR /app
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.json tsconfig.base.json ./
+COPY lib/db/package.json ./lib/db/
+COPY lib/api-zod/package.json ./lib/api-zod/
+COPY lib/api-spec/package.json ./lib/api-spec/
+COPY lib/api-client-react/package.json ./lib/api-client-react/
+COPY artifacts/jualdanbeli/package.json ./artifacts/jualdanbeli/
+COPY scripts/package.json ./scripts/
+RUN pnpm install --frozen-lockfile
+
+FROM deps AS builder
+WORKDIR /app
+COPY lib/ ./lib/
+COPY artifacts/jualdanbeli/ ./artifacts/jualdanbeli/
+COPY scripts/ ./scripts/
+ENV BASE_URL=/
+ENV PORT=3000
+RUN pnpm run typecheck:libs
+RUN pnpm --filter @workspace/jualdanbeli run build
+
+FROM nginx:alpine AS runner
+COPY --from=builder /app/artifacts/jualdanbeli/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

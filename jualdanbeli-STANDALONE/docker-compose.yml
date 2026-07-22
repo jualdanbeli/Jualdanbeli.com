@@ -1,0 +1,73 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: jualdanbeli
+      POSTGRES_USER: jualdanbeli
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme123}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jualdanbeli"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    command: ["node", "-e", "require('./artifacts/api-server/dist/migrate.mjs')"]
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://jualdanbeli:${DB_PASSWORD:-changeme123}@db:5432/jualdanbeli
+    restart: "no"
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    environment:
+      NODE_ENV: production
+      PORT: 8080
+      DATABASE_URL: postgres://jualdanbeli:${DB_PASSWORD:-changeme123}@db:5432/jualdanbeli
+      SESSION_SECRET: ${SESSION_SECRET}
+      MIDTRANS_SERVER_KEY: ${MIDTRANS_SERVER_KEY}
+      MIDTRANS_CLIENT_KEY: ${MIDTRANS_CLIENT_KEY}
+      MIDTRANS_IS_PRODUCTION: ${MIDTRANS_IS_PRODUCTION:-false}
+      RAJAONGKIR_API_KEY: ${RAJAONGKIR_API_KEY}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      APP_URL: ${APP_URL:-http://localhost}
+      PRIVATE_OBJECT_DIR: ${PRIVATE_OBJECT_DIR:-/app/uploads}
+    volumes:
+      - uploads_data:/app/uploads
+    ports:
+      - "8080:8080"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ssl:/etc/nginx/ssl:ro
+
+volumes:
+  postgres_data:
+  uploads_data:

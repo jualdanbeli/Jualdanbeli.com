@@ -1,0 +1,1 @@
+{"version":3,"file":"escrowAccount.d.ts","sourceRoot":"","sources":["../../../src/generated/types/escrowAccount.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AACH,OAAO,KAAK,EAAE,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAEjE,MAAM,WAAW,aAAa;IAC5B,EAAE,EAAE,MAAM,CAAC;IACX,OAAO,EAAE,MAAM,CAAC;IAChB,MAAM,EAAE,MAAM,CAAC;IACf,MAAM,EAAE,mBAAmB,CAAC;IAC5B,SAAS,CAAC,EAAE,IAAI,CAAC;CAClB"}
